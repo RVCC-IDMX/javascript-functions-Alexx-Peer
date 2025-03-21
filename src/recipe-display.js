@@ -6,7 +6,7 @@ import { createRecipe, addIngredient, addStep } from './recipe-basics.js';
 
 /* c8 ignore start */
 // Set to true to see console examples when running this file directly
-const SHOW_EXAMPLES = false;
+const SHOW_EXAMPLES = true;
 /* c8 ignore stop */
 
 /**
@@ -25,6 +25,7 @@ const timePerServing = recipe => {
   // that divides the recipe's cookingTime by its servings
 
   // YOUR CODE HERE
+  return recipe.cookingTime / recipe.servings;
 };
 
 /**
@@ -45,6 +46,11 @@ const getStepsList = (recipe) => {
   // Return the formatted string
 
   // YOUR CODE HERE
+  if (recipe.steps.length === 0) {
+    return "No steps added yet"
+  }
+  else
+    return recipe.steps.map((step, index) => `${index + 1}. ${step}`).join('\n');
 };
 
 /**
@@ -66,6 +72,11 @@ const getIngredientsList = (recipe) => {
   // Return the formatted string
 
   // YOUR CODE HERE
+  if (recipe.ingredients.length === 0) {
+    return "No ingredients added yet"
+  }
+  else
+    return recipe.ingredients.map(x => `- ${x.amount} ${x.unit} of ${x.name}`).join('\n')
 };
 
 /**
@@ -87,6 +98,14 @@ function formatRecipe(recipe) {
   // Return the complete formatted string
 
   // YOUR CODE HERE
+  return `${recipe.name}
+for ${recipe.servings} people
+Cooking time: ${recipe.cookingTime} minutes
+Time per serving: ${timePerServing(recipe).toFixed(1)} minutes
+Ingredients:
+${getIngredientsList(recipe)}
+Steps:
+${getStepsList(recipe)}`;
 }
 
 /* c8 ignore start */

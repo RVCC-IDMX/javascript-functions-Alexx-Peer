@@ -31,6 +31,15 @@ function createRecipe(name, cookingTime, servings = 4) {
   // - dateCreated: today's date (use new Date().toLocaleDateString())
 
   // YOUR CODE HERE
+  return {
+    id: Date.now(),
+    name,
+    cookingTime,
+    servings,
+    ingredients: [],
+    steps: [],
+    dateCreated: new Date().toLocaleDateString(),
+  };
 }
 
 /**
@@ -54,6 +63,9 @@ const addIngredient = function (recipe, name, amount, unit) {
   // Return the modified recipe
 
   // YOUR CODE HERE
+  const ingredient = { name, amount, unit };
+  recipe.ingredients.push(ingredient);
+  return recipe;
 };
 
 /**
@@ -72,6 +84,8 @@ function addStep(recipe, instruction) {
   // Return the modified recipe
 
   // YOUR CODE HERE
+  recipe.steps.push(instruction);
+  return recipe;
 }
 
 /**
@@ -91,6 +105,11 @@ function removeStep(recipe, stepIndex) {
   // Return the modified recipe
 
   // YOUR CODE HERE
+  if (stepIndex < 0 || stepIndex >= recipe.steps.length)
+    return recipe;
+  else
+    recipe.steps.splice(stepIndex, 1);
+  return recipe;
 }
 
 /* c8 ignore start */

@@ -29,6 +29,8 @@ function addRecipe(recipe) {
   // Return true to indicate success
 
   // YOUR CODE HERE
+  recipeCollection.push(recipe);
+  return true;
 }
 
 /**
@@ -49,6 +51,8 @@ const findRecipe = (name) => {
   // This should be written as an arrow function
 
   // YOUR CODE HERE
+  return recipeCollection.find((recipe) => recipe.name == name);
+
 };
 
 /**
@@ -68,6 +72,7 @@ function getQuickRecipes(maxTime = 30) {
   // The function has a default parameter of 30 minutes
 
   // YOUR CODE HERE
+  return recipeCollection.filter((recipe) => recipe.cookingTime <= maxTime);
 }
 
 /**
@@ -84,6 +89,7 @@ function clearRecipes() {
   // Reset the recipeCollection to an empty array
 
   // YOUR CODE HERE
+  return recipeCollection = [];
 }
 
 /* c8 ignore start */
